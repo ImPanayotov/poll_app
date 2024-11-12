@@ -1,0 +1,14 @@
+#!/bin/bash -e
+
+# Ensure tmp/pids directory exists to avoid server.pid errors
+mkdir -p tmp/pids
+
+# Prepare database if running the server command
+if [ "${1}" == "bundle exec rails" ] && [ "${2}" == "server" ]; then
+  # Run database creation and migrations
+  echo "Preparing the database..."
+  ./bin/rails db:create db:migrate db:seed
+fi
+
+# Execute the main container command
+exec "$@"
