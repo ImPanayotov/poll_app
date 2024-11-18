@@ -16,10 +16,13 @@ ENV RAILS_ENV="development" \
 # Base build stage for installing dependencies and building assets
 FROM base as build
 
-# Install necessary build dependencies
+# Synchronize system clock and install necessary build dependencies
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y \
-    build-essential git libpq-dev libvips pkg-config && \
+    ntpdate && \
+    ntpdate -u pool.ntp.org && \
+    apt-get install --no-install-recommends -y \
+    build-essential git libpq-dev libvips pkg-config nodejs && \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
 
 RUN gem install rails
@@ -51,10 +54,13 @@ RUN bundle exec bootsnap precompile --gemfile && \
 # Final production image
 FROM base
 
-# Install runtime dependencies only
+# Synchronize system clock and install runtime dependencies only
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y \
-    curl libvips postgresql-client && \
+    ntpdate && \
+    ntpdate -u pool.ntp.org && \
+    apt-get install --no-install-recommends -y \
+    curl libvips postgresql-client nodejs && \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
 
 # Install necessary gems (including Rails)

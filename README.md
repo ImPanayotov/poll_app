@@ -1,24 +1,27 @@
-# README
+## Functionalities of the Poll App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- [ ] Remaster docker configuration as it's not running as it should
+- [ ] Restrict users to vote once per some time interval, e.g., once per 24 hours - can be achieved if we store the last voting time for a certain question and validate if it's outside the time frame
+- [ ] Restrict/allow users to change their vote, probably once or twice per question
+- [x] Allow only admin users to create/edit/delete polls
+- [x] Restrict edit/delete of questions if already voted
+- [x] Display a list of all polls
+- [x] Display questions results in percentage
+- [x] Authenticate users with Devise
+- [x] Restrict more than one vote per question per user - if registered - the email is checked, if guest user - it's IP
+- [x] Authorize users based on roles (admin, regular user)
+- [ ] Send email notifications to users when new poll is created or is closed, as polls could be active in some certain timeframe; can send to users the results of the polls and when someone voted - can be achieved with Noticed 2 
+- [ ] Implement search functionality for polls (maybe by category, brands or something of interest) and add pagination for poll listing - probably Kaminari would do the work
+- [ ] Add comments to polls and maybe some file/image upload
+- [ ] Like/dislike polls
+- [ ] Share polls on social media
+- [ ] Export poll results to CSV or any other format like PDF, XLSx
+- [ ] Import poll data from CSV
+- [x] Implement API endpoints for polls
+- [ ] Add tests with Rspec; model, request, integration
+- [ ] Optimize db queries, especially for the vote counting, maybe with counter cache
+- [ ] Add user profile pages and better admin UI
+- [ ] Implement user settings (change password, update email, etc.)
+- [ ] Implement caching for frequently accessed data
+- [ ] Add internationalization 
+- [ ] Add logging and monitoring for error tracking

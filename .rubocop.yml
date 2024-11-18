@@ -1,0 +1,35 @@
+require: rubocop-rails
+
+Rails:
+  Enabled: true
+
+AllCops:
+    TargetRubyVersion: 3.3
+    Exclude:
+        - 'db/schema.rb'
+        - 'bin/*'
+        - 'config/*'
+        - 'lib/tasks/*'
+        - 'vendor/*'
+        - 'node_modules/*'
+        - 'tmp/*'
+        - 'log/*'
+        - 'public/*'
+        - 'storage/*'
+        - 'coverage/*'
+        - 'spec/*'
+        - 'test/*'
+        - 'test/fixtures'
+
+Style/Documentation:
+  Enabled: false
+Rails/BulkChangeTable:
+  Enabled: false
+Layout/LineLength:
+  Exclude:
+    - 'config/initializers/devise.rb'
+Metrics/BlockLength:
+  Exclude:
+    - 'config/environments/development.rb'
+Metrics/MethodLength:
+  Max: 30
