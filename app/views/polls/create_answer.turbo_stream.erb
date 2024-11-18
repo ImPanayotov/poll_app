@@ -1,0 +1,5 @@
+<turbo-stream action="append" target="question_<%= @question.id %>_answers">
+  <template>
+    <%= render partial: 'answer_fields', locals: { f: form_builder_for_new_answer } %>
+  </template>
+</turbo-stream>

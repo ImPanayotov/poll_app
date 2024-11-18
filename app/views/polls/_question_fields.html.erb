@@ -1,0 +1,17 @@
+<div class="question-fields border p-3 mb-3">
+  <div class="form-group">
+    <%= f.label :content, "Question" %>
+    <%= f.text_field :content, class: 'form-control', placeholder: "Enter the question" %>
+  </div>
+
+  <h4>Answers</h4>
+  <div class="answers">
+    <%= f.fields_for :answers do |answer_fields| %>
+      <div class="form-group answer-field">
+        <%= answer_fields.label :content, "Answer" %>
+        <%= answer_fields.text_field :content, class: 'form-control', placeholder: "Enter an answer" %>
+      </div>
+    <% end %>
+    <%= link_to 'Add Answer', '#', class: "btn btn-secondary add-answer" %>
+  </div>
+</div>

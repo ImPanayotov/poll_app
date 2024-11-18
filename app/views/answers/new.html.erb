@@ -1,0 +1,26 @@
+<!-- app/views/answers/new.html.erb -->
+<h1>New Answer</h1>
+
+<%= form_with(model: [@poll, @question, @answer], local: true) do |form| %>
+  <% if @answer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@answer.errors.count, "error") %> prohibited this answer from being saved:</h2>
+      <ul>
+        <% @answer.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :content %>
+    <%= form.text_field :content, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.submit "Create Answer", class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<%= link_to 'Back to Poll', poll_path(@poll), class: 'btn btn-secondary' %>

@@ -1,0 +1,5 @@
+<turbo-frame id="poll_questions">
+  <% @poll.questions.each do |question| %>
+    <%= render partial: 'question', locals: { question: question } %>
+  <% end %>
+</turbo-frame>

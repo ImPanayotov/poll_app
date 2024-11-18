@@ -1,0 +1,5 @@
+<turbo-stream target="question_<%= @question.id %>">
+  <template>
+    <%= render partial: 'question', locals: { question: @question } %>
+  </template>
+</turbo-stream>

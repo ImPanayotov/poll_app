@@ -1,0 +1,30 @@
+<div class="container mt-5">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="display-4">Polls</h1>
+    <% if policy(Poll).create? %>
+      <%= link_to 'New Poll', new_poll_path, class: 'btn btn-primary' %>
+    <% end  %>
+  </div>
+
+  <table class="table table-striped table-bordered">
+    <thead class="table-dark">
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col" class="text-center">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @polls.each do |poll| %>
+      <tr>
+        <td class="align-middle"><%= poll.title %></td>
+        <td class="text-center">
+          <%= link_to 'Show', poll_path(poll), class: 'btn btn-info btn-sm' %>
+          <% if policy(Poll).create? %>
+            <%= button_to 'Destroy', poll_path(poll), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+          <% end  %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

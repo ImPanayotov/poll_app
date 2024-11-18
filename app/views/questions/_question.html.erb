@@ -1,0 +1,4 @@
+<%= form_with url: poll_questions_path(@poll), method: :post, data: { turbo_frame: "poll_questions" } do |form| %>
+  <%= form.text_field :content, placeholder: "Enter your question" %>
+  <%= form.submit "Add Question" %>
+<% end %>

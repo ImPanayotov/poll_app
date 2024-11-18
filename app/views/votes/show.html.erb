@@ -1,0 +1,30 @@
+<!-- app/views/polls/show.html.erb -->
+<h1><%= @poll.title %></h1>
+<p><%= @poll.description %></p>
+
+<%= link_to 'Create a New Question', new_poll_question_path(@poll), class: 'btn btn-primary' %>
+
+<% @poll.questions.each do |question| %>
+  <h3><%= question.content %></h3>
+
+  <%= form_with url: create_vote_poll_path(@poll), method: :post do |form| %>
+    <%= hidden_field_tag :question_id, question.id %>
+
+    <div class="form-group">
+      <% question.answers.each do |answer| %>
+        <div class="form-check">
+          <%= radio_button_tag :answer_id, answer.id, false, class: "form-check-input", id: "answer_#{answer.id}" %>
+          <%= label_tag "answer_#{answer.id}", answer.content, class: "form-check-label" %>
+        </div>
+      <% end %>
+    </div>
+
+    <%= form.submit "Vote", class: "btn btn-primary" %>
+  <% end %>
+
+  <%= link_to 'Add Answer', new_poll_question_answer_path(@poll, question), class: 'btn btn-secondary' %> |
+  <%= link_to 'Edit Question', edit_poll_question_path(@poll, question), class: 'btn btn-warning' %> |
+  <%= link_to 'Delete Question', poll_question_path(@poll, question), method: :delete, data: { confirm: 'Are you sure you want to delete this question?' }, class: 'btn btn-danger' %>
+<% end %>
+
+<%= link_to 'Back to Polls', polls_path, class: 'btn btn-secondary' %>
